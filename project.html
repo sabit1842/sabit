@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sabit Islam - Personal Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #2a1a41 0%, #0d253f 100%);
+      --neon-purple: #b76efb;
+      --neon-blue: #3ddcff;
+      --neon-pink: #ff52a0;
+      --neon-green: #00ffa2;
+      --text-light: #e0e6f9;
+      --text-muted: #8f94a0;
+      --glass-bg: rgba(255 255 255 / 0.07);
+      --glass-border: rgba(255 255 255 / 0.2);
+      --shadow-glow: rgba(183, 110, 251, 0.4);
+    }
+
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Share Tech Mono', monospace;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-light);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(26, 19, 41, 0.85);
+      border-bottom: 1px solid var(--glass-border);
+      backdrop-filter: blur(12px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.3rem 6%;
+      z-index: 9999;
+      box-shadow: 0 0 12px var(--shadow-glow);
+    }
+
+    nav h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 1.9rem;
+      letter-spacing: 6px;
+      color: var(--neon-purple);
+      text-shadow: 0 0 15px var(--neon-purple);
+      cursor: default;
+      user-select: none;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      position: relative;
+      color: var(--text-light);
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 0;
+      overflow: hidden;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    nav a::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: -100%;
+      width: 100%;
+      height: 2.5px;
+      background: var(--neon-purple);
+      transition: left 0.35s ease;
+      border-radius: 8px;
+    }
+
+    nav a:hover::before,
+    nav a:focus::before {
+      left: 0;
+    }
+
+    nav a:hover {
+      color: var(--neon-purple);
+      text-shadow: 0 0 6px var(--neon-purple);
+    }
+
+    header {
+      margin-top: 70px;
+      padding: 6rem 6%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 3rem;
+      position: relative;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background:
+        radial-gradient(circle at 20% 30%, var(--neon-purple), transparent 50%),
+        radial-gradient(circle at 80% 50%, var(--neon-blue), transparent 50%);
+      opacity: 0.12;
+      filter: blur(70px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    header h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 1.7rem;
+      color: var(--neon-blue);
+      letter-spacing: 4px;
+      margin-bottom: 0.6rem;
+      z-index: 1;
+      user-select: none;
+    }
+
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 4.5rem;
+      letter-spacing: 8px;
+      background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 12px var(--neon-pink));
+      margin-bottom: 1rem;
+      z-index: 1;
+      user-select: none;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      color: var(--text-muted);
+      max-width: 420px;
+      line-height: 1.6;
+      z-index: 1;
+    }
+
+    header img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 3px solid var(--neon-pink);
+      box-shadow: 0 0 35px var(--neon-pink);
+      object-fit: cover;
+      filter: drop-shadow(0 0 6px var(--neon-pink));
+      transition: transform 0.45s ease;
+      justify-self: center;
+      z-index: 1;
+      cursor: pointer;
+    }
+
+    header img:hover {
+      transform: scale(1.15) rotate(10deg);
+      box-shadow: 0 0 65px var(--neon-pink);
+    }
+
+    section {
+      padding: 5rem 6%;
+      max-width: 1100px;
+      margin: 0 auto 6rem;
+      border-radius: 22px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 0 30px var(--shadow-glow);
+      border: 1.5px solid var(--glass-border);
+      color: var(--text-light);
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.6rem;
+      letter-spacing: 3px;
+      color: var(--neon-purple);
+      margin-bottom: 3rem;
+      text-align: center;
+      user-select: none;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 100px;
+      height: 5px;
+      margin: 0.8rem auto 0;
+      border-radius: 5px;
+      background: linear-gradient(90deg, var(--neon-purple), var(--neon-pink));
+      box-shadow: 0 0 15px var(--neon-pink);
+    }
+
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    #about p {
+      font-size: 1.25rem;
+      line-height: 1.8;
+      color: var(--text-light);
+      padding-right: 1rem;
+      user-select: text;
+    }
+
+    #about img {
+      width: 100%;
+      border-radius: 18px;
+      box-shadow: 0 0 30px var(--neon-blue);
+      border: 2px solid var(--neon-blue);
+      justify-self: center;
+      filter: drop-shadow(0 0 14px var(--neon-blue));
+      transition: transform 0.4s ease;
+    }
+
+    #about img:hover {
+      transform: scale(1.07);
+      filter: drop-shadow(0 0 30px var(--neon-blue));
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 2.5rem;
+    }
+
+    .card {
+      background: rgba(255 255 255 / 0.12);
+      border-radius: 22px;
+      padding: 2rem 2.5rem;
+      box-shadow:
+        inset 0 0 12px var(--neon-purple),
+        0 8px 22px var(--neon-purple);
+      border: 2px solid var(--neon-pink);
+      transition: transform 0.4s ease, box-shadow 0.35s ease;
+      cursor: default;
+    }
+
+    .card:hover {
+      transform: translateY(-16px) scale(1.05);
+      box-shadow:
+        inset 0 0 18px var(--neon-pink),
+        0 14px 40px var(--neon-pink);
+      border-color: var(--neon-blue);
+    }
+
+    .card ul {
+      list-style: none;
+    }
+
+    .card ul li {
+      font-size: 1.18rem;
+      font-weight: 700;
+      padding-left: 2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      color: var(--text-light);
+      user-select: text;
+    }
+
+    .card ul li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--neon-blue);
+      font-weight: 900;
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .flex-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.8rem;
+      perspective: 800px;
+    }
+
+    .project, .skill {
+      padding: 1rem 2.3rem;
+      background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+      color: #121212;
+      font-weight: 800;
+      border-radius: 40px;
+      box-shadow: 0 0 24px var(--neon-pink);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      user-select: none;
+      transform-style: preserve-3d;
+      transition: filter 0.3s ease, transform 0.3s ease;
+    }
+
+    .project:nth-child(odd),
+    .skill:nth-child(even) {
+      transform: rotateY(-8deg) rotateX(5deg);
+    }
+    .project:nth-child(even),
+    .skill:nth-child(odd) {
+      transform: rotateY(7deg) rotateX(-4deg);
+    }
+
+    .project:hover, .skill:hover {
+      filter: brightness(1.3);
+      transform: rotate(0deg) scale(1.15);
+      box-shadow: 0 0 60px var(--neon-pink);
+      z-index: 10;
+      position: relative;
+    }
+
+    form {
+      max-width: 520px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    form input,
+    form textarea {
+      background: rgba(255 255 255 / 0.08);
+      border-radius: 35px;
+      border: 2px solid var(--neon-blue);
+      padding: 18px 22px;
+      font-size: 1.18rem;
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--text-light);
+      font-weight: 600;
+      outline: none;
+      box-shadow:
+        inset 0 0 15px var(--neon-blue);
+      transition: box-shadow 0.4s ease, border-color 0.4s ease;
+    }
+
+    form input:focus,
+    form textarea:focus {
+      border-color: var(--neon-pink);
+      box-shadow:
+        0 0 25px var(--neon-pink),
+        inset 0 0 20px var(--neon-pink);
+    }
+
+    form textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    form button {
+      background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+      font-weight: 900;
+      font-size: 1.35rem;
+      border: none;
+      border-radius: 40px;
+      padding: 18px 0;
+      color: #121212;
+      cursor: pointer;
+      box-shadow: 0 0 28px var(--neon-pink);
+      transition: filter 0.3s ease, transform 0.3s ease;
+      user-select: none;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+    }
+
+    form button:hover {
+      filter: brightness(1.5);
+      transform: scale(1.12);
+      box-shadow: 0 0 45px var(--neon-pink);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 6%;
+      color: var(--text-muted);
+      font-size: 1rem;
+      font-weight: 400;
+      user-select: none;
+      letter-spacing: 0.7px;
+    }
+
+    @media (max-width: 850px) {
+      header {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      #about {
+        grid-template-columns: 1fr;
+      }
+
+      #about p {
+        padding-right: 0;
+      }
+
+      header img {
+        margin: 2rem auto 0;
+      }
+    }
+
+    @media (max-width: 500px) {
+      nav ul {
+        gap: 1rem;
+      }
+      nav a {
+        font-size: 0.9rem;
+      }
+      header h1 {
+        font-size: 3rem;
+        letter-spacing: 3px;
+      }
+      header h2 {
+        font-size: 1.2rem;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .project, .skill {
+        padding: 0.8rem 1.6rem;
+        font-size: 0.9rem;
+      }
+      form input, form textarea {
+        font-size: 1rem;
+      }
+      form button {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <h1>SABIT ISLAM</h1>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header>
+  <div>
+    <h2>COMPUTER SCIENCE STUDENT</h2>
+    <h1>Hello, I'm Sabit</h1>
+    <p>Android Group | Coding Enthusiast | Creativity in Logic</p>
+  </div>
+  <img src="sabit.jpg" alt="Sabit Islam" />
+</header>
+
+<section id="about">
+  <h2 class="section-title">About Me</h2>
+  <p>
+    My name is Sabit Islam. I am a part of the second year Computer Science Android grouping,
+    and in the lines of code I find not only logic but also a new language of creativity.
+    Technology is not just a subject for me, it is an endless canvas of revealing the unknown,
+    where I use a new brush every day.
+  </p>
+</section>
+
+<section id="education">
+  <h2 class="section-title">Education</h2>
+  <div class="cards-grid">
+    <div class="card">
+      <ul>
+        <li>JSC: Independent Model School and College</li>
+        <li>SSC: Independent Model School and College</li>
+        <li>HSC: Police Line School and College</li>
+        <li>B.Sc. in CSE: Daffodil International University</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2 class="section-title">Projects</h2>
+  <div class="flex-wrap">
+    <div class="project">Dell Management in Java</div>
+    <div class="project">DLD Lot Project</div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2 class="section-title">Skills</h2>
+  <div class="flex-wrap">
+    <div class="skill">Java</div>
+    <div class="skill">C</div>
+    <div class="skill">C++</div>
+    <div class="skill">HTML</div>
+    <div class="skill">Problem Solving</div>
+    <div class="skill">Microsoft Excel</div>
+    <div class="skill">Microsoft Word</div>
+    <div class="skill">Microsoft PowerPoint</div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="section-title">Contact Me</h2>
+  <form>
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email" required />
+    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<footer>
+  &copy; 2025 Sabit Islam. All Rights Reserved.
+</footer>
+
+</body>
+</html>
